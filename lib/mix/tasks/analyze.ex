@@ -13,8 +13,6 @@ defmodule Mix.Tasks.Analyze do
     |> Enum.into(%{})
 
     files = Path.wildcard("**/*.json")
-    IO.puts Enum.count(files)
-
     # non-parallel much slower
     #parsed_files = files
     #  |> Enum.map(fn(f) ->
