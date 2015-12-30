@@ -13,10 +13,10 @@ defmodule Mix.Tasks.Analyze do
     |> Enum.into(%{})
 
     files = Path.wildcard("**/*.json")
+    IO.puts Enum.count(files)
 
     # non-parallel seems about 1/2 as fast
     parsed_files = files
-      |> Enum.take(5)
       |> Enum.map(fn(f) ->
         {:ok, t} = File.read(f)
         {:ok, day} = Poison.decode(t)
@@ -34,10 +34,10 @@ defmodule Mix.Tasks.Analyze do
     #parsed_files = Enum.map(mapped_files, &Task.await/1)
 
     msg_per_user = fn(f, acc) ->
-      msgs_per_file = Enum.reduce(f, %{}, fn(msg, acc) ->
+      msgs_per_file = Enum.reduce(f, %{}, fn(msg, file_count) ->
         uname = user_map[msg["user"]]
-        current_count = Map.get(acc, uname, 0)
-        Map.put(acc, uname, current_count + 1)
+        current_count = Map.get(file_count, uname, 0)
+        Map.put(file_count, uname, current_count + 1)
       end)
       Map.merge(msgs_per_file, acc, fn(_k, v1, v2) -> v1 + v2 end)
     end
@@ -46,6 +46,7 @@ defmodule Mix.Tasks.Analyze do
       |> Enum.reduce(%{}, msg_per_user)
       |> Enum.sort(fn(x, y) -> elem(y, 1) > elem(x, 1) end)
     IO.inspect result
+    IEx.pry
   end
 
 end
