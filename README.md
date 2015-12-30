@@ -1,19 +1,9 @@
-# Analysis
+# Slack Dump Analyze
 
-**TODO: Add description**
+check this out into the directory your slack dump is in
 
-## Installation
+Then in the checkout dir run:
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+    mix deps.get # Why doesn't elixir or erlang have a built in json library?
+    iex -S mix analyze
 
-  1. Add analysis to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:analysis, "~> 0.0.1"}]
-        end
-
-  2. Ensure analysis is started before your application:
-
-        def application do
-          [applications: [:analysis]]
-        end
