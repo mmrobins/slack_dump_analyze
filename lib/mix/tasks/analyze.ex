@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Analyze do
     File.cd("..")
 
     {:ok, t} = File.read "users.json"
-    users = ExJSON.parse(t)
+    users = Poison.Parser.parse!(t)
 
     user_map = users
     |> Enum.map(fn(u) -> {u["id"], u["name"]} end)
@@ -17,13 +17,13 @@ defmodule Mix.Tasks.Analyze do
     #parsed_files = files
     #  |> Enum.map(fn(f) ->
     #    {:ok, t} = File.read(f)
-    #    ExJSON.parse(t)
+    #    Poison.Parser.parse!(t)
     #  end)
 
     mapped_files = Enum.map(files, fn(f) ->
       Task.async(fn ->
         {:ok, t} = File.read(f)
-        ExJSON.parse(t)
+        Poison.Parser.parse!(t)
       end)
     end)
 
