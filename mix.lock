@@ -1,1 +1,2 @@
-%{"poison": {:hex, :poison, "1.5.0"}}
+%{"exjson": {:hex, :exjson, "0.3.0"},
+  "poison": {:hex, :poison, "1.5.0"}}

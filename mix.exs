@@ -27,6 +27,9 @@ defmodule Analysis.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:poison, "~> 1.3"}]
+    [
+      {:exjson, "~> 0.3"},
+      {:poison, "~> 1.3"}
+    ]
   end
 end
