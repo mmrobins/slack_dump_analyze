@@ -11,7 +11,9 @@ If you want to be able to put IEx.pry lines into the task run it with
 
     iex -S mix analyze
 
-So far I'm surprised this runs more slowly in Elixir than the equivalent I cooked up in Ruby.  I think Ruby has a faster JSON parser...
+So far I'm surprised this runs more slowly in Elixir than the equivalent I
+cooked up in Ruby.  I think Ruby has a faster JSON parser.  I tried other JSON
+parsers than Poison, but it's the only so far I've tried that works.
 
 ```ruby
 require 'json'
